@@ -1,0 +1,154 @@
+# Создать программно файл в текстовом формате, записать в него построчно данные, вводимые пользователем.
+# Об окончании ввода данных свидетельствует пустая строка
+
+test.txt
+iuhdcsdc
+
+my_f = open('test.txt', 'w')
+line = input('Введите текст \n')
+while line:
+    my_f.writelines(line)
+    line = input('Введите текст \n')
+    if not lewjhgine:
+        break
+
+my_f.close()
+my_f = open('test.txt', 'r')
+content = my_f.readlines()
+print(content)
+my_f.close()
+
+
+#Создать текстовый файл (не программно), сохранить в нем несколько строк,
+# выполнить подсчет количества строк,
+# количества слов в каждой строке
+
+
+2.txt
+
+we
+plus
+is
+supplied
+with
+the
+bee
+generator
+and
+some
+other
+generators
+may
+also
+provide
+it
+as
+an
+optional
+part
+of
+the
+
+
+
+def generator_file():
+    f_file_open = open('2.txt', 'w')
+    data_list = [
+                'we', 'plus', 'is', 'supplied', 'with', 'the', 'bee', 'generator',
+                'and', 'some', 'other', 'generators', 'may', 'also', 'provide',
+                'it', 'as', 'an', 'optional', 'part', 'of', 'the'
+                ]
+    data = [
+        f_file_open.write(str(data_list[i]) + "\n") for i in range(len(data_list))
+    ]
+    f_file_open.close()
+generator_file()
+
+def count():
+    file_open = open('2.txt', 'r')
+    print("Count strings: " + str(len(file_open.readlines())) + ".")
+    file_open = open('2.txt', 'r')
+    print("Count elements: " + str(len(file_open.read())) + ".")
+
+count()
+
+
+
+#Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами.
+# Программа должна подсчитывать сумму чисел в файле и выводить ее на экран
+
+file_5.txt
+4 5 3 4 7 6
+
+
+
+def summary():
+    try:
+        with open('file_5.txt', 'w+') as file_obj:
+            line = input('Введите цифры через пробел \n')
+            file_obj.writelines(line)
+            my_numb = line.split()
+
+            print(sum(map(int, my_numb)))
+    except IOError:
+        print('Ошибка в файле')
+    except ValueError:
+        print('Неправильно набран номер. Ошибка ввода-вывода')
+summary()
+
+
+#Необходимо создать (не программно) текстовый файл, где каждая строка описывает учебный предмет и наличие лекционных, практических и лабораторных занятий по этому предмету и их количество. Важно, чтобы для каждого предмета не обязательно были все типы занятий. Сформировать словарь, содержащий название предмета и общее количество занятий по нему.
+# Вывести словарь на экран
+
+
+FILENAME = "task6.txt"
+
+subjects = {}
+
+try:
+    with open(FILENAME, encoding='utf-8') as fh:
+        lines = fh.readlines()
+
+    for line in lines:
+        data = line.replace('(', ' ').split()
+
+        subjects[data[0][:-1]] = sum(
+            int(i) for i in data if i.isdigit()
+        )
+except IOError as e:
+    print(e)
+except ValueError:
+    print("Неконсистентные данные")
+    
+    
+    
+    
+ #Cоздать (не программно) текстовый файл со следующим содержимым:
+#One — 1
+# Two — 2
+#Three — 3
+#Four — 4
+#Необходимо написать программу, открывающую файл на чтение и считывающую построчно данные.
+# При этом английские числительные должны заменяться на русские. Новый блок строк должен записываться в новый текстовый файл.
+
+
+File_4.txt
+
+One  1
+Two  2
+Three  3
+Four  4
+
+rus = {'One' : 'Один', 'Two' : 'Два', 'Three' : 'Три', 'Four' : 'Четыре'}
+new_file = []
+with open('file_4.txt', 'r') as file_obj:
+    #content = file_obj.read().split('\n')
+    for i in file_obj:
+        i = i.split(' ', 1)
+        new_file.append(rus[i[0]] + '  ' + i[1])
+    print(new_file)
+
+with open('file_4_new.txt', 'w') as file_obj_2:
+    file_obj_2.writelines(new_file)
+
+
